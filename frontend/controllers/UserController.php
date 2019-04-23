@@ -43,6 +43,7 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        // we get al the users to list them in the view the model has the necesary limitations according to the user rol
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -78,21 +79,23 @@ class UserController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()))  {
-        		$model->status='10';
-        		$model->created_at=time();
-        		$model->updated_at=time();
-        		$model->setPassword($model->password);
-        		$model->generateAuthKey();
-        		        		
-        		if ($model->save()){
-            		return $this->redirect(['view', 'id' => $model->id]);
-            	}
-            	else {
-            		return $this->render('create', [
-            				'model' => $model,
-            				]);
-            	}	            
-        	} 
+    		// we set the values for the fields that are not filled by the user
+            $model->status='10';
+    		$model->created_at=time();
+    		$model->updated_at=time();
+    		// these two are integratef functions from the framework that allow us to encrypt the password
+    		$model->setPassword($model->password);
+    		$model->generateAuthKey();
+    		        		
+    		if ($model->save()){
+        		return $this->redirect(['view', 'id' => $model->id]);
+        	}
+        	else {
+        		return $this->render('create', [
+        				'model' => $model,
+        				]);
+        	}	            
+        } 
         else {
             return $this->render('create', [
                 'model' => $model,

@@ -23,7 +23,7 @@ $roles = ["Pending"=>"Pending","User"=>"User","Admin"=>"Admin"];
         <div class="col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true])->hint(false)  ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true])  ?>
 
                 <?= $form->field($model, 'email')?>
 

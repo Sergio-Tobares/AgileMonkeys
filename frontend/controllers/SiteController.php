@@ -74,19 +74,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$usuario="";
-		if (!Yii::$app->user->isGuest){
-			$nombreusuario=User::find()->where(['id'=>Yii::$app->user->id])->one();
-			$usuario=$nombreusuario->username;
-			if (Yii::$app->user->identity->rol=='Admin'){
-				$searchModel = new UserSearch();
-				$clientes= $searchModel->search(Yii::$app->request->queryParams);
-				return $this->render('index',['usuario'=>$usuario,'clientes'=>$clientes,'searchModel'=>$searchModel]);
-			}
-			else
-				return $this->render('index',['usuario'=>$usuario]);
-		}
-		return $this->render('index',['usuario'=>$usuario]);
+		return $this->render('index');
 	}
 	
 	/**
@@ -96,10 +84,11 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		if (!Yii::$app->user->isGuest) {
+		// if the user is aleary logged then redirecto to Home 
+	    if (!Yii::$app->user->isGuest) {
 			return $this->goHome();
 		}
-		
+		// if not we render the login form
 		$model = new LoginForm();
 		if ($model->load(Yii::$app->request->post()) && $model->login()) {
 			return $this->goBack();
@@ -162,6 +151,7 @@ class SiteController extends Controller
 	 */
 	public function actionSignup()
 	{
+	    // we create the new model for the form and then render the form to submit
 		$model = new SignupForm();
 		if ($model->load(Yii::$app->request->post())) {			
 			if ($user = $model->signup()) {

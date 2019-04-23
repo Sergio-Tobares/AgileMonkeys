@@ -15,13 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2><?= Html::encode($this->title) ?></h2>
 
     <p>        
-        <?php echo Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?php // if it is not admin the user cant delete any other user 
+        if (Yii::$app->user->identity->rol=='Admin') {echo Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure that you want to delete this user?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]);}     ?>
     </p>
 	<div class="row">		
 		<div class="col-md-8">
