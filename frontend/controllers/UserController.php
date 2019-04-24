@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        // we get al the users to list them in the view the model has the necesary limitations according to the user rol
+        // we get all the users to list them in the view the model has the necesary limitations according to the user rol
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

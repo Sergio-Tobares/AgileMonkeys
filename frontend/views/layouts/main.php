@@ -74,7 +74,7 @@ AppAsset::register($this);
 					<div class="col-xs-2 col-md-12" style="margin:2px;">
 						<?= Html::a('<span class="glyphicon glyphicon-user"></span>', ['user/index'], ['title'=>'Users List','class' => 'btn btn-info']);?></div>
 					<div class="col-xs-2 col-md-12" style="margin:2px;">
-						<?= Html::a('<span class="glyphicon glyphicon-user"></span>', ['user/index'], ['title'=>'Customers List','class' => 'btn btn-info']);?></div>
+						<?php if (Yii::$app->user->identity->rol!='Pending') echo Html::a('<span class="glyphicon glyphicon-th-list"></span>', ['customers/index'], ['title'=>'Customers List','class' => 'btn btn-info']);?></div>
 				</div>
 			</div>
 			<div class="col-md-11"><?= $content ?></div>		      

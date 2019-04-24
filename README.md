@@ -1,21 +1,8 @@
-Yii 2 Advanced Project Template
+Yii 2 PHP Api
 ===============================
-
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
-
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
 
 The template is designed to work in a team development environment. It supports
 deploying the application in different environments.
-
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
-
 DIRECTORY STRUCTURE
 -------------------
 
@@ -31,15 +18,6 @@ console
     migrations/          contains database migrations
     models/              contains console-specific model classes
     runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
 frontend
     assets/              contains application assets such as JavaScript and CSS
     config/              contains frontend configurations
@@ -53,3 +31,21 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+The goal of the project is to develop a backend aplication that allows users to list, view, edit and delete customers.
+
+The customer data has to contain the following information, Name, Surnname, Id and Photo field. In adition, all customers will have a reference to whom created the 
+register and the last one that updated the info, also the creation date time and the update date time.
+
+The admin users, also can create and change status of the other users, edit the info or delete a user account.
+
+A github repositorie has been created https://github.com/Sergio-Tobares/agilemonkeys to share the code.
+
+The users can signup in the aplication, but their status will be Pending as long as an Admin user don't validate them. Meanwhile they can login into the aplicaton
+but can only se their profile.
+Users can algo reset the password , this will send an email with further instructions and a link to change the password and login again.  
+When their status change and become a validated user they will be able to see all customers and perform the operations as described before.
+
+The customer data allow to upload images to their profile, as a test it was limited to just the jpg format. This image is resized and can be updated any time.
+
+The delete option in the users and customers, is only shown when the user is view, this was a limitation used just as a example.
