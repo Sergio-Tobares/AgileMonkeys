@@ -47,6 +47,7 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // data provider contains the user list filtered acording to rol, that filter is set in the model
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -60,6 +61,7 @@ class UserController extends Controller
      */
     public function actionView($id=false)
     {
+    	// render of the user view, if no id is passed we show the connected user
     	if (!$id) $id=Yii::$app->user->id;
     	
     	$model=$this->findModel($id);
@@ -87,6 +89,7 @@ class UserController extends Controller
     		$model->setPassword($model->password);
     		$model->generateAuthKey();
     		        		
+    		// if else to use fields validation, the rules are set in the model
     		if ($model->save()){
         		return $this->redirect(['view', 'id' => $model->id]);
         	}

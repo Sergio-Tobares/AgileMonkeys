@@ -34,18 +34,7 @@ class User extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function rules()
-    {
-        /*return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['rol'], 'string'],
-            [['username', 'password_hash', 'password_reset_token', 'verification_token', 'email'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
-            
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-            [['password_reset_token'], 'unique'],
-        ];*/
+    {        
     	return [
             ['username', 'trim'],
             ['username', 'required'],
@@ -84,7 +73,7 @@ class User extends \yii\db\ActiveRecord
         ];
     }
     
-    
+    // functions needed so the admin user can create new users
     public function setPassword($password)
     {
     	$this->password_hash = Yii::$app->security->generatePasswordHash($password);

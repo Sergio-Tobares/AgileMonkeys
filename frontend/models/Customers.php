@@ -34,7 +34,7 @@ class Customers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-        	['file', 'required', 'on' => 'create'],
+        	//['file', 'required', 'on' => 'create'], if we want to make it required just on create
             [['name', 'surname', 'photo', 'id_created', 'id_updated', 'created', 'updated'], 'required'],
             [['id_created', 'id_updated', 'created', 'updated'], 'integer'],
             [['name'], 'string', 'max' => 50],
@@ -62,7 +62,8 @@ class Customers extends \yii\db\ActiveRecord
             'file' => 'Photo',
         ];
     }
-
+    
+    // relations that allow to access the related data from this model without the need to make another query
     public function getCreatedby()
     {
     	return $this->hasOne(User::className(), ['id' => 'id_created']);

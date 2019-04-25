@@ -25,6 +25,7 @@ class SiteController extends Controller
 	 */
 	public function behaviors()
 	{
+		//automatic implement of roles of the framework in case they are needed
 		return [
 				'access' => [
 						'class' => AccessControl::className(),
@@ -74,6 +75,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		// render of the main page
 		return $this->render('index');
 	}
 	
@@ -84,11 +86,12 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		// if the user is aleary logged then redirecto to Home 
+		// if the user is aleary logged then is redirected to Home 
 	    if (!Yii::$app->user->isGuest) {
 			return $this->goHome();
 		}
-		// if not we render the login form
+		// if not logged we render the login form the if else structure here is used in almost every 
+		// form and allow the validation rules
 		$model = new LoginForm();
 		if ($model->load(Yii::$app->request->post()) && $model->login()) {
 			return $this->goBack();
@@ -118,6 +121,8 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+		
+		// contact form send an email to admin contact
 		$model = new ContactForm();
 		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 			if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -173,6 +178,9 @@ class SiteController extends Controller
 	 */
 	public function actionRequestPasswordReset()
 	{
+		// if password reset is requested, an email is sended with a link to change the actual password to 
+		// a new one.
+		
 		$model = new PasswordResetRequestForm();
 		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 			if ($model->sendEmail()) {
